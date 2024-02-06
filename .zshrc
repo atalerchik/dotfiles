@@ -15,6 +15,8 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 export PATH="$PATH:/home/atalerchik/.local/bin"
 
+# ZSH_THEME="bira"
+
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -75,8 +77,22 @@ export PATH="$PATH:/home/atalerchik/.local/bin"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-zstyle ':omz:plugins:nvm' lazy yes
-plugins=(z git zsh-syntax-highlighting zsh-autosuggestions nvm)
+# zstyle ':omz:plugins:nvm' lazy yes
+plugins=(z git zsh-syntax-highlighting zsh-autosuggestions)
+
+# Function to lazily load nvm
+load_nvm() {
+  unset -f nvm node npm npx # Unset the stubs
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # Load nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # Load nvm bash_completion
+}
+
+# Create stubs for node and npm that load nvm when called
+nvm() { load_nvm; nvm "$@"; }
+node() { load_nvm; node "$@"; }
+npm() { load_nvm; npm "$@"; }
+npx() { load_nvm; npx "$@"; }
 
 source $ZSH/oh-my-zsh.sh
 
