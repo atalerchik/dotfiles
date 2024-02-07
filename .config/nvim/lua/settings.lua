@@ -23,8 +23,9 @@ vim.o.shiftwidth = 2
 vim.o.expandtab = true
 
 -- Enable autoindent
-vim.o.autoindent = true
 vim.o.smartindent = true
+vim.o.autoindent = true
+vim.o.breakindent = true
 
 -- Set fileformat
 vim.o.fileformat = 'unix'
@@ -63,3 +64,9 @@ vim.g.loaded_netrwPlugin = 1
 -- Apperance
 opt.cursorline = true
 opt.termguicolors = true
+
+-- Enable the sign column to prevent the screen from jumping
+vim.opt.signcolumn = "yes"
+
+-- Always keep 8 lines above/below cursor unless at start/end of file
+vim.opt.scrolloff = 8
