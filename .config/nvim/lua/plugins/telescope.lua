@@ -27,7 +27,7 @@ return {
 						hidden = true,
 						file_ignore_patterns = { "node_modules", ".git", '__pycache__/'  },
 						prompt_title = "File Browser",
-						max_file_size = 1000000,
+						max_file_size = 3000000,
 					})
 				end,
 				desc = "Lists files in your current working directory, respects .gitignore",

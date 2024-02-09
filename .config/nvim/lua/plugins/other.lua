@@ -15,10 +15,10 @@ return {
 	},
 	-- Visual enhancements and themes
 	'xiyaowong/transparent.nvim',
-	{
-		'ellisonleao/gruvbox.nvim',
-		config = function ()
-			vim.cmd [[colorscheme gruvbox]]
-		end
-	},
+	-- {
+	-- 	'ellisonleao/gruvbox.nvim',
+	-- 	config = function ()
+	-- 		vim.cmd [[colorscheme gruvbox]]
+	-- 	end
+	-- },
 }
