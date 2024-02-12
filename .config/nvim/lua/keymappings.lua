@@ -39,6 +39,7 @@ vim.api.nvim_set_keymap('i', 'jk', '<esc>', {})
 -- Obsidian 
 keymap.set('n', '<leader>ot', ':ObsidianToday<CR>')
 keymap.set('n', '<leader>oy', ':ObsidianYesterday<CR>')
+keymap.set('n', '<leader>oqs', ':ObsidianQuickSwitch<CR>')
 keymap.set('n', '<leader>obl', ':ObsidianBacklinks<CR>')
 
 -- Maker dir for this file

@@ -70,3 +70,9 @@ vim.opt.signcolumn = "yes"
 
 -- Always keep 8 lines above/below cursor unless at start/end of file
 vim.opt.scrolloff = 8
+
+
+vim.o.conceallevel = 2
+vim.api.nvim_set_hl(2, "HelpBar", { link = "Normal" })
+vim.api.nvim_set_hl(2, "HelpStar", { link = "Normal" })
+
