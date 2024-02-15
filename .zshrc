@@ -129,7 +129,7 @@ alias cat="bat"
 alias ytaudio="yt-dlp --extract-audio --audio-format mp3 --audio-quality 0"
 
 
-eval "$(zoxide init zsh)"
+eval "$(zoxide init --cmd cd zsh)"
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
 eval "$(starship init zsh)"
