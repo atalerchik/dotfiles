@@ -8,11 +8,6 @@ return {
 		branch = 'v2.x',
 	},
 	'hrsh7th/cmp-nvim-lsp',
-	-- Git
-	{
-		'tpope/vim-fugitive',
-		cmd = 'G', -- Load when the 'G' command is used
-	},
 	-- Visual enhancements and themes
 	'xiyaowong/transparent.nvim',
 	-- {
