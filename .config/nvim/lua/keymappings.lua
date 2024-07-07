@@ -36,12 +36,6 @@ keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 -- Map 'jk' to <esc> in insert mode
 vim.api.nvim_set_keymap('i', 'jk', '<esc>', {})
 
--- Obsidian 
-keymap.set('n', '<leader>ot', ':ObsidianToday<CR>')
-keymap.set('n', '<leader>oy', ':ObsidianYesterday<CR>')
-keymap.set('n', '<leader>oqs', ':ObsidianQuickSwitch<CR>')
-keymap.set('n', '<leader>obl', ':ObsidianBacklinks<CR>')
-
 -- Maker dir for this file
 keymap.set('n', '<leader>md', ':!mkdir -p %:h<CR>', { noremap = true, silent = true })
 
@@ -49,13 +43,11 @@ keymap.set('n', '<leader>md', ':!mkdir -p %:h<CR>', { noremap = true, silent = t
 keymap.set('n', '<leader>cl', 'yiwoconsole.log("", <C-r>o);<ESC>', { noremap = true, silent = true })
 keymap.set('v', '<leader>cl', 'yOconsole.log("", <C-r>"");<ESC>', { noremap = true, silent = true })
 
-keymap.set('v', '<leader>wf', 'Sfunction () {<CR><C-r>"<CR>}<ESC>', { noremap = true, silent = true })
-
 keymap.set('n', '<leader>zz', ':ZenMode<cr>', { noremap = true, silent = true })
 
 -- Clear highlights
 keymap.set('n', '<leader>nh', ':nohl<CR>', { desc = 'Clear search highlights' })
 
--- Create ADR
-keymap.set('n', '<leader>adr', ':e ~/projects/atlas/adr-documentation/ADR-<C-R>=strftime("%Y%m%d%H%M%S")<CR>.md<CR>', { noremap = true, silent = true})
-
+-- File explorer with NvimTree
+keymap.set("n", "<Leader>f", ":NvimTreeFindFile<Return>", opts)
+keymap.set("n", "<Leader>t", ":NvimTreeToggle<Return>", opts)

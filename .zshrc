@@ -5,6 +5,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+export PATH="$HOME/.local/bin:$PATH"
+
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -69,10 +71,13 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # Aliases
 alias ls='ls --color'
 alias vim='nvim'
+alias n='nvim'
 alias c='clear'
 alias c='exa'
-alias ll="exa -l -g --icons --git"
-alias llt="exa -1 --icons --git-ignore --tree"
+# alias ll="exa -l -g --icons --git"
+# alias llt="exa -1 --icons --git-ignore --tree"
+alias ll="exa -l -g --icons"
+alias llt="exa -1 --icons --tree"
 
 # Shell integrations
 eval "$(fzf --zsh)"

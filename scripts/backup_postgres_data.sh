@@ -29,7 +29,7 @@ unset PGPASSWORD
 
 echo "Backup completed: $OUTPUT_FILE"
 
- # public | audit               | table | morda_prod
- # public | audit_2020          | table | morda_prod
- # public | audit_2021          | table | morda_prod
- # public | audit_2022					| table | morda_prod
+# public | audit               | table | morda_prod
+# public | audit_2020          | table | morda_prod
+# public | audit_2021          | table | morda_prod
+# public | audit_2022					| table | morda_prod
