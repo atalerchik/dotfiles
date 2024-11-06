@@ -9,16 +9,24 @@ fn main() {
     // Получаем домашнюю директорию пользователя
     let home_dir = env::var("HOME").expect("Не удалось получить домашнюю директорию");
     
-    // Путь к файлу отчета
-    let report_dir = format!("{}/.daily_reports", home_dir);
-    let report_file = format!("{}/daily_report.txt", report_dir);
-    
     // Создаем директорию для отчетов, если она не существует
+    let report_dir = format!("{}/.daily_reports", home_dir);
     if !Path::new(&report_dir).exists() {
         create_dir_all(&report_dir).expect("Не удалось создать директорию для отчетов");
     }
 
-    // Остальной код остается без изменений
+    // Получаем текущую дату
+    let current_date = Local::now();
+
+    // Формируем имя файла отчета
+    let report_file_name = format!(
+        "daily_report_{}.md",
+        current_date.format("%d_%m_%Y")
+    );
+
+    // Путь к файлу отчета
+    let report_file = format!("{}/{}", report_dir, report_file_name);
+
     // Получаем сообщение последнего коммита
     let output = Command::new("git")
         .args(&["log", "-1", "--pretty=%B"])
@@ -42,13 +50,23 @@ fn main() {
     // Получаем текущее время
     let current_time = Local::now();
 
-    // Формируем запись для отчета
+    // Получаем хеш последнего коммита
+    let output = Command::new("git")
+        .args(&["rev-parse", "HEAD"])
+        .output()
+        .expect("Не удалось выполнить git команду");
+
+    let commit_hash = String::from_utf8_lossy(&output.stdout).trim().to_string();
+
+    // Формируем запись для отчета в формате Markdown
     let report_entry = format!(
-        "==============================\nДата: {}\nСообщение коммита: {}\nИзмененные файлы:\n{}\n\n",
+        "## Коммит от {}\n\n**Хеш коммита:** `{}`\n\n**Сообщение коммита:**\n{}\n\n**Измененные файлы:**\n{}\n\n---\n\n",
         current_time.format("%Y-%m-%d %H:%M:%S"),
+        commit_hash,
         commit_message,
         changed_files
     );
+
 
     // Открываем или создаем файл отчета
     let mut file = OpenOptions::new()
