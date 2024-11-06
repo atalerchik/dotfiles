@@ -3,25 +3,22 @@ use std::fs::{OpenOptions, create_dir_all};
 use std::io::Write;
 use chrono::Local;
 use std::path::Path;
+use std::env;
 
 fn main() {
-    // Получаем корневую директорию репозитория
-    let output = Command::new("git")
-        .args(&["rev-parse", "--show-toplevel"])
-        .output()
-        .expect("Не удалось выполнить git команду");
-
-    let repo_root = String::from_utf8_lossy(&output.stdout).trim().to_string();
-
+    // Получаем домашнюю директорию пользователя
+    let home_dir = env::var("HOME").expect("Не удалось получить домашнюю директорию");
+    
     // Путь к файлу отчета
-    let report_dir = format!("{}/.git_reports", repo_root);
+    let report_dir = format!("{}/.daily_reports", home_dir);
     let report_file = format!("{}/daily_report.txt", report_dir);
-
+    
     // Создаем директорию для отчетов, если она не существует
     if !Path::new(&report_dir).exists() {
         create_dir_all(&report_dir).expect("Не удалось создать директорию для отчетов");
     }
 
+    // Остальной код остается без изменений
     // Получаем сообщение последнего коммита
     let output = Command::new("git")
         .args(&["log", "-1", "--pretty=%B"])
